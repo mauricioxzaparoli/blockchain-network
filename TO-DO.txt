@@ -1,0 +1,7 @@
+1. Lembrar que as portas que diferenciam um Pod de outro são especificadas nos Services
+
+2. Para os peers instanciarem novos containers para executar contratos inteligentes:
+    - volumes do tipo hostPath para os executáveis do Docker.
+
+3. Avaliar a necessidade de usar NodePort para os Services dos ordenadores.
+

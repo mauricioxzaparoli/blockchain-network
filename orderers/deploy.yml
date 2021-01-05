@@ -1,0 +1,279 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: orderer
+    spec:
+      containers:
+        - name: orderer
+          image: hyperledger/fabric-orderer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: ordererbase
+          volumeMounts:
+          - mountPath: /var/hyperledger/orderer/genesis.block
+            name: config
+          - mountPath: /var/hyperledger/orderer/msp
+            name: crypto-msp
+          - mountPath: /var/hyperledger/orderer/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: orderer-persistentdata
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric
+          command: ["orderer"]
+          ports:
+            - containerPort: 7050
+      volumes:
+      - name: config
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls
+          type: Directory
+      - name: orderer-persistentdata
+        hostPath:
+          path: /home/storage/orderer
+          type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderer2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: orderer2
+    spec:
+      containers:
+        - name: orderer2
+          image: hyperledger/fabric-orderer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: ordererbase
+          volumeMounts:
+          - mountPath: /var/hyperledger/orderer/genesis.block
+            name: config
+          - mountPath: /var/hyperledger/orderer/msp
+            name: crypto-msp
+          - mountPath: /var/hyperledger/orderer/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: orderer2-persistentdata
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric
+          command: ["orderer"]
+          ports:
+            - containerPort: 7050
+      volumes:
+      - name: config
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls
+          type: Directory
+      - name: orderer2-persistentdata
+        hostPath:
+          path: /home/storage/orderer2
+          type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderer3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: orderer3
+    spec:
+      containers:
+        - name: orderer3
+          image: hyperledger/fabric-orderer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: ordererbase
+          volumeMounts:
+          - mountPath: /var/hyperledger/orderer/genesis.block
+            name: config
+          - mountPath: /var/hyperledger/orderer/msp
+            name: crypto-msp
+          - mountPath: /var/hyperledger/orderer/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: orderer3-persistentdata
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric
+          command: ["orderer"]
+          ports:
+            - containerPort: 7050
+      volumes:
+      - name: config
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls
+          type: Directory
+      - name: orderer3-persistentdata
+        hostPath:
+          path: /home/storage/orderer3
+          type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderer4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: orderer4
+    spec:
+      containers:
+        - name: orderer4
+          image: hyperledger/fabric-orderer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: ordererbase
+          volumeMounts:
+          - mountPath: /var/hyperledger/orderer/genesis.block
+            name: config
+          - mountPath: /var/hyperledger/orderer/msp
+            name: crypto-msp
+          - mountPath: /var/hyperledger/orderer/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: orderer4-persistentdata
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric
+          command: ["orderer"]
+          ports:
+            - containerPort: 7050
+      volumes:
+      - name: config
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls
+          type: Directory
+      - name: orderer4-persistentdata
+        hostPath:
+          path: /home/storage/orderer4
+          type: DirectoryOrCreate
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orderer5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orderer5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: orderer5
+    spec:
+      containers:
+        - name: orderer5
+          image: hyperledger/fabric-orderer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: ordererbase
+          volumeMounts:
+          - mountPath: /var/hyperledger/orderer/genesis.block
+            name: config
+          - mountPath: /var/hyperledger/orderer/msp
+            name: crypto-msp
+          - mountPath: /var/hyperledger/orderer/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: orderer5-persistentdata
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric
+          command: ["orderer"]
+          ports:
+            - containerPort: 7050
+      volumes:
+      - name: config
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls
+          type: Directory
+      - name: orderer5-persistentdata
+        hostPath:
+          path: /home/storage/orderer5
+          type: DirectoryOrCreate

@@ -1,0 +1,244 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: peer0org1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: peer0org1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: peer0org1
+    spec:
+      containers:
+        - name: peer0org1
+          image: hyperledger/fabric-peer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: peerbase
+          - configMapRef:
+              name: peer0org1
+          - secretRef:
+              name: couchdbpeer0org1access
+          volumeMounts:
+          - mountPath: /etc/hyperledger/fabric/msp
+            name: crypto-msp
+          - mountPath: /etc/hyperledger/fabric/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: peer0-persistentdata
+          - mountPath: /etc/hyperledger/fabric/core.yaml
+            name: builders-config
+            subPath: core.yaml
+          - mountPath: /builders/external/bin/detect
+            name: external-builder-detect
+            subPath: detect
+          - mountPath: /builders/external/bin/build
+            name: external-builder-build
+            subPath: build
+          - mountPath: /builders/external/bin/release
+            name: external-builder-release
+            subPath: release
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+          command: ["peer"]
+          args: ["node", "start"]
+          ports:
+            - containerPort: 7051
+        - name: couchdbpeer0org1
+          image: hyperledger/fabric-couchdb:0.4.18
+          envFrom:
+          - secretRef:
+              name: couchdbpeer0org1
+          ports:
+            - containerPort: 5984 
+      volumes:
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls
+          type: Directory
+      - name: peer0-persistentdata
+        hostPath:
+          path: /home/storage/peer0-org1
+          type: DirectoryOrCreate
+      - name: builders-config
+        configMap:
+          name: builders-config
+          items:
+            - key: core.yaml
+              path: core.yaml
+      - name: external-builder-detect
+        configMap:
+          name: builders-config
+          items:
+            - key: detect
+              path: detect
+              mode: 0544
+      - name: external-builder-build
+        configMap:
+          name: builders-config
+          items:
+            - key: build
+              path: build
+              mode: 0544
+      - name: external-builder-release
+        configMap:
+          name: builders-config
+          items:
+            - key: release
+              path: release
+              mode: 0544
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: peer1org1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: peer1org1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: peer1org1
+    spec:
+      containers:
+        - name: peer1org1
+          image: hyperledger/fabric-peer:2.2.0
+          envFrom:
+          - configMapRef:
+              name: peerbase
+          - configMapRef:
+              name: peer1org1
+          - secretRef:
+              name: couchdbpeer1org1access
+          volumeMounts:
+          - mountPath: /etc/hyperledger/fabric/msp
+            name: crypto-msp
+          - mountPath: /etc/hyperledger/fabric/tls
+            name: crypto-tls
+          - mountPath: /var/hyperledger/production
+            name: peer1-persistentdata
+          - mountPath: /etc/hyperledger/fabric/core.yaml
+            name: builders-config
+            subPath: core.yaml
+          - mountPath: /builders/external/bin/detect
+            name: external-builder-detect
+            subPath: detect
+          - mountPath: /builders/external/bin/build
+            name: external-builder-build
+            subPath: build
+          - mountPath: /builders/external/bin/release
+            name: external-builder-release
+            subPath: release
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+          command: ["peer"]
+          args: ["node", "start"]
+          ports:
+            - containerPort: 7051
+        - name: couchdbpeer1org1
+          image: hyperledger/fabric-couchdb:0.4.18
+          envFrom:
+          - secretRef:
+              name: couchdbpeer1org1
+          ports:
+            - containerPort: 5984
+      volumes:
+      - name: crypto-msp
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp
+          type: Directory
+      - name: crypto-tls
+        hostPath: 
+          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls
+          type: Directory
+      - name: peer1-persistentdata
+        hostPath:
+          path: /home/storage/peer1-org1
+          type: DirectoryOrCreate
+      - name: builders-config
+        configMap:
+          name: builders-config
+          items:
+            - key: core.yaml
+              path: core.yaml
+      - name: external-builder-detect
+        configMap:
+          name: builders-config
+          items:
+            - key: detect
+              path: detect
+              mode: 0544
+      - name: external-builder-build
+        configMap:
+          name: builders-config
+          items:
+            - key: build
+              path: build
+              mode: 0544
+      - name: external-builder-release
+        configMap:
+          name: builders-config
+          items:
+            - key: release
+              path: release
+              mode: 0544
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cliorg1
+spec:
+  selector:
+    matchLabels:
+      app: cliorg1
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cliorg1
+    spec:
+      containers:
+        - name: cliorg1
+          image: hyperledger/fabric-tools:2.2.0
+          tty: true
+          volumeMounts:
+            - mountPath: /opt/gopath/src/github.com/chaincode/
+              name: chaincode
+            - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/channel-artifacts/
+              name: channel-artifacts
+            - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+              name: crypto
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+      restartPolicy: Always
+      volumes:
+        - name: chaincode
+          hostPath:
+            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/chaincode
+            type: Directory
+        - name: channel-artifacts
+          hostPath:
+            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config
+            type: Directory
+        - name: crypto
+          hostPath:
+            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config
+            type: Directory

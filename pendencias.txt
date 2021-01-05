@@ -1,0 +1,4 @@
+1. Renomear o nome dos componentes retirando os pontos porque estes tornam os nomes inválidos.
+    - Verificar crypto-config.yml e configtx.yml
+
+2. Levantar a rede por completo novamente removendo elementos antigos.
