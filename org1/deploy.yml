@@ -52,7 +52,7 @@ spec:
           ports:
             - containerPort: 7051
         - name: couchdbpeer0org1
-          image: hyperledger/fabric-couchdb:0.4.18
+          image: hyperledger/fabric-couchdb:0.4.22
           envFrom:
           - secretRef:
               name: couchdbpeer0org1
@@ -61,11 +61,11 @@ spec:
       volumes:
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls
           type: Directory
       - name: peer0-persistentdata
         hostPath:
@@ -153,7 +153,7 @@ spec:
           ports:
             - containerPort: 7051
         - name: couchdbpeer1org1
-          image: hyperledger/fabric-couchdb:0.4.18
+          image: hyperledger/fabric-couchdb:0.4.22
           envFrom:
           - secretRef:
               name: couchdbpeer1org1
@@ -162,11 +162,11 @@ spec:
       volumes:
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls
           type: Directory
       - name: peer1-persistentdata
         hostPath:
@@ -200,45 +200,33 @@ spec:
               path: release
               mode: 0544
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: cliorg1
 spec:
-  selector:
-    matchLabels:
-      app: cliorg1
-  replicas: 1
-  strategy:
-    type: Recreate
-  template:
-    metadata:
-      labels:
-        app: cliorg1
-    spec:
-      containers:
-        - name: cliorg1
-          image: hyperledger/fabric-tools:2.2.0
-          tty: true
-          volumeMounts:
-            - mountPath: /opt/gopath/src/github.com/chaincode/
-              name: chaincode
-            - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/channel-artifacts/
-              name: channel-artifacts
-            - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-              name: crypto
-          workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-      restartPolicy: Always
-      volumes:
-        - name: chaincode
-          hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/chaincode
-            type: Directory
-        - name: channel-artifacts
-          hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config
-            type: Directory
-        - name: crypto
-          hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config
-            type: Directory
+  containers:
+    - name: cliorg1
+      image: hyperledger/fabric-tools:2.2.0
+      tty: true
+      volumeMounts:
+        - mountPath: /opt/gopath/src/github.com/chaincode/
+          name: chaincode
+        - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/channel-artifacts/
+          name: channel-artifacts
+        - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+          name: crypto
+      workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+  volumes:
+    - name: chaincode
+      hostPath:
+        path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/chaincode
+        type: Directory
+    - name: channel-artifacts
+      hostPath:
+        path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config
+        type: Directory
+    - name: crypto
+      hostPath:
+        path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config
+        type: Directory

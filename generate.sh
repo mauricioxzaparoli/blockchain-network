@@ -7,8 +7,8 @@ cryptogen generate --config=crypto-config.yaml
 
 configtxgen -profile OrgOrdererGenesis --channelID testchainid -outputBlock ./config/genesis.block
 
-configtxgen -profile CanalHash -outputCreateChannelTx ./config/canalhash.tx -channelID canalhash 
+configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./config/tworgschannel.tx -channelID tworgschannel 
 
-configtxgen -profile CanalHash -outputAnchorPeersUpdate ./config/Org1MSPanchors_CanalHash.tx -channelID canalhash -asOrg Org1MSP 
+configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./config/Org1MSPanchors.tx -channelID tworgschannel -asOrg Org1MSP 
 
-configtxgen -profile CanalHash -outputAnchorPeersUpdate ./config/Org2MSPanchors_CanalHash.tx -channelID canalhash -asOrg Org2MSP
+configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./config/Org2MSPanchors.tx -channelID tworgschannel -asOrg Org2MSP

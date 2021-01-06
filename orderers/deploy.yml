@@ -40,14 +40,14 @@ spec:
       volumes:
       - name: config
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config/genesis.block
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls
           type: Directory
       - name: orderer-persistentdata
         hostPath:
@@ -96,14 +96,14 @@ spec:
       volumes:
       - name: config
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config/genesis.block
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls
           type: Directory
       - name: orderer2-persistentdata
         hostPath:
@@ -152,14 +152,14 @@ spec:
       volumes:
       - name: config
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config/genesis.block
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls
           type: Directory
       - name: orderer3-persistentdata
         hostPath:
@@ -208,14 +208,14 @@ spec:
       volumes:
       - name: config
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config/genesis.block
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls
           type: Directory
       - name: orderer4-persistentdata
         hostPath:
@@ -264,14 +264,14 @@ spec:
       volumes:
       - name: config
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config/genesis.block
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config/genesis.block
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls
           type: Directory
       - name: orderer5-persistentdata
         hostPath:

@@ -61,11 +61,11 @@ spec:
       volumes:
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls
           type: Directory
       - name: peer0-persistentdata
         hostPath:
@@ -162,11 +162,11 @@ spec:
       volumes:
       - name: crypto-msp
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp
           type: Directory
       - name: crypto-tls
         hostPath: 
-          path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls
+          path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls
           type: Directory
       - name: peer1-persistentdata
         hostPath:
@@ -232,13 +232,13 @@ spec:
       volumes:
         - name: chaincode
           hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/chaincode
+            path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/chaincode
             type: Directory
         - name: channel-artifacts
           hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/config
+            path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/config
             type: Directory
         - name: crypto
           hostPath:
-            path: /home/mauricio/Downloads/Blockchain/Kubernetes/rede-prot/crypto-config
+            path: /home/mauricio/Downloads/blockchain/Kubernetes/blockchain-network/crypto-config
             type: Directory
