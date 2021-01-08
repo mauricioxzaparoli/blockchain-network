@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: orderer
-          image: hyperledger/fabric-orderer:2.2.0
+          image: hyperledger/fabric-orderer:2.2.1
           envFrom:
           - configMapRef:
               name: ordererbase
@@ -76,7 +76,7 @@ spec:
     spec:
       containers:
         - name: orderer2
-          image: hyperledger/fabric-orderer:2.2.0
+          image: hyperledger/fabric-orderer:2.2.1
           envFrom:
           - configMapRef:
               name: ordererbase
@@ -132,7 +132,7 @@ spec:
     spec:
       containers:
         - name: orderer3
-          image: hyperledger/fabric-orderer:2.2.0
+          image: hyperledger/fabric-orderer:2.2.1
           envFrom:
           - configMapRef:
               name: ordererbase
@@ -188,7 +188,7 @@ spec:
     spec:
       containers:
         - name: orderer4
-          image: hyperledger/fabric-orderer:2.2.0
+          image: hyperledger/fabric-orderer:2.2.1
           envFrom:
           - configMapRef:
               name: ordererbase
@@ -244,7 +244,7 @@ spec:
     spec:
       containers:
         - name: orderer5
-          image: hyperledger/fabric-orderer:2.2.0
+          image: hyperledger/fabric-orderer:2.2.1
           envFrom:
           - configMapRef:
               name: ordererbase

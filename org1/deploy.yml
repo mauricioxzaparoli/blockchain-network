@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: peer0org1
-          image: hyperledger/fabric-peer:2.2.0
+          image: hyperledger/fabric-peer:2.2.1
           envFrom:
           - configMapRef:
               name: peerbase
@@ -120,7 +120,7 @@ spec:
     spec:
       containers:
         - name: peer1org1
-          image: hyperledger/fabric-peer:2.2.0
+          image: hyperledger/fabric-peer:2.2.1
           envFrom:
           - configMapRef:
               name: peerbase
@@ -207,7 +207,7 @@ metadata:
 spec:
   containers:
     - name: cliorg1
-      image: hyperledger/fabric-tools:2.2.0
+      image: hyperledger/fabric-tools:2.2.1
       tty: true
       volumeMounts:
         - mountPath: /opt/gopath/src/github.com/chaincode/

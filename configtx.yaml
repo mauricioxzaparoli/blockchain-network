@@ -91,8 +91,6 @@ Application: &ApplicationDefaults
     <<: *ApplicationCapabilities
 
 Orderer: &OrdererDefaults
-  # Tipo do ordenador: A implementação de ordenador para iniciar.
-  # Tipos disponíveis são: "solo", "kafka" e "etcdraft"
   OrdererType: etcdraft
   Addresses:
     - orderer:7050
