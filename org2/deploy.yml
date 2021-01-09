@@ -209,6 +209,9 @@ spec:
     - name: cliorg2
       image: hyperledger/fabric-tools:2.2.1
       tty: true
+      envFrom:
+        - configMapRef:
+            name: cliorg2
       volumeMounts:
         - mountPath: /opt/gopath/src/github.com/chaincode/
           name: chaincode

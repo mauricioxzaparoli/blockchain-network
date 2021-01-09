@@ -12,6 +12,17 @@ microk8s.kubectl exec cliorg1 -- peer channel update \
 microk8s.kubectl exec cliorg1 -- peer channel join \
     -o orderer:7050 -b tworgschannel.block --tls --cafile $ORDERER_CA
 
-microk8s.kubectl exec cliorg1 -- env CORE_PEER_ADDRESS=peer1org1:7051; \
-    peer channel join \
+#microk8s.kubectl exec cliorg1 -- env CORE_PEER_ADDRESS=peer1org1:7051; \
+#    peer channel join \
+#    -o orderer:7050 -b tworgschannel.block --tls --cafile $ORDERER_CA
+
+ORG2ANCHORPEER=/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/channel-artifacts/Org2MSPanchors.tx
+
+microk8s.kubectl exec cliorg2 -- peer channel update \
+    -c tworgschannel -o orderer:7050 -f $ORG2ANCHORPEER --tls --cafile $ORDERER_CA
+
+microk8s.kubectl exec cliorg2 -- peer channel fetch oldest tworgschannel.block \
+    -c tworgschannel -o orderer:7050 --tls --cafile $ORDERER_CA
+
+microk8s.kubectl exec cliorg2 -- peer channel join \
     -o orderer:7050 -b tworgschannel.block --tls --cafile $ORDERER_CA
