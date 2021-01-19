@@ -1,0 +1,5 @@
+Usar imagens docker no microk8s registry
+##############################################
+
+docker save image > image.tar
+microk8s ctr image import image.tar
